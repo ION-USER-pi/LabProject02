@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Website Navigation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+        .navigation-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .sidebar {
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-frame {
+            flex-grow: 1;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+        .nav-link:hover {
+            background-color: #f0f4f8;
+            transform: translateX(5px);
+        }
+        .nav-link img {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .nav-link .site-name {
+            font-weight: 600;
+        }
+        .fallback-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background-color: #f0f4f8;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .navigation-container {
+                flex-direction: column;
+                height: auto;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                flex-direction: row;
+                overflow-x: auto;
+            }
+            .nav-link {
+                flex-direction: column;
+                align-items: center;
+                margin: 0 10px;
+                padding: 10px;
+            }
+            .nav-link img {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+            .nav-link .site-name {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation-container">
+        <div class="sidebar">
+            
+            <a href="#" class="nav-link" data-content="chatgpt" id="chatgpt-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT">
+                <span class="site-name">ChatGPT</span>
+            </a>
+            
+            <a href="#" class="nav-link" data-content="figma" id="figma-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma">
+                <span class="site-name">Figma</span>
+            </a>
+            
+            <a href="#" class="nav-link" data-content="wikipedia" id="wiki-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Tango_style_Wikipedia_Icon.svg/240px-Tango_style_Wikipedia_Icon.svg.png" alt="Wikipedia">
+                <span class="site-name">Wikipedia</span>
+            </a>
+            
+            <a href="#" class="nav-link" data-content="notion" id="notion-link">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion">
+                <span class="site-name">Notion</span>
+            </a>
+        </div>
+        
+        <div id="content-area" class="content-frame">
+            <div class="fallback-content">
+                <h2 class="text-2xl font-bold mb-4">Select a Platform</h2>
+                <p>Click on a platform to explore its content</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const contentTemplates = {
+            chatgpt: `
+                <div class="fallback-content">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" class="w-40 mb-4 md:w-32 sm:w-24">
+                    <h2 class="text-2xl font-bold md:text-xl sm:text-lg">ChatGPT</h2>
+                    <p class="text-center max-w-md mt-4 md:text-sm sm:text-xs">
+                        An advanced AI language model developed by Anthropic, 
+                        capable of understanding and generating human-like text 
+                        across a wide range of topics and applications.
+                    </p>
+                </div>
+            `,
+            figma: `
+                <div class="fallback-content">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" class="w-40 mb-4 md:w-32 sm:w-24">
+                    <h2 class="text-2xl font-bold md:text-xl sm:text-lg">Figma</h2>
+                    <p class="text-center max-w-md mt-4 md:text-sm sm:text-xs">
+                        A collaborative web-based design tool that allows 
+                        designers to create, prototype, and share user interface 
+                        and user experience designs in real-time.
+                    </p>
+                </div>
+            `,
+            notion: `
+                <div class="fallback-content">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" class="w-40 mb-4 md:w-32 sm:w-24">
+                    <h2 class="text-2xl font-bold md:text-xl sm:text-lg">Notion</h2>
+                    <p class="text-center max-w-md mt-4 md:text-sm sm:text-xs">
+                        An all-in-one workspace for note-taking, project management, 
+                        and collaboration. It combines docs, wikis, and task management 
+                        into a single, customizable platform.
+                    </p>
+                </div>
+            `,
+            wikipedia: `
+                <div class="fallback-content">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Tango_style_Wikipedia_Icon.svg/240px-Tango_style_Wikipedia_Icon.svg.png" alt="Wikipedia" class="w-40 mb-4 md:w-32 sm:w-24">
+                    <h2 class="text-2xl font-bold md:text-xl sm:text-lg">Wikipedia</h2>
+                    <p class="text-center max-w-md mt-4 md:text-sm sm:text-xs">
+                        A free, multilingual online encyclopedia created and maintained 
+                        by a community of volunteer contributors. It provides 
+                        collaborative knowledge across countless topics.
+                    </p>
+                </div>
+            `
+        };
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const contentKey = this.getAttribute('data-content');
+                const contentArea = document.getElementById('content-area');
+                contentArea.innerHTML = contentTemplates[contentKey];
+            });
+        });
+
+        // Auto-select Wikipedia on initial load
+        document.getElementById('wiki-link').click();
+    </script>
+</body>
+</html>

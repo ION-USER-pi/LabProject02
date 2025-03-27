@@ -2,132 +2,140 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>labproject02</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+            overscroll-behavior-y: contain;
         }
-        .frame-example {
-            background-color: white;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .frame-section {
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
         }
-        h1 {
-            color: #333;
-            text-align: center;
+        .frame-section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-        h2 {
-            color: #444;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
+        iframe {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
         }
-        .code-example {
-            background-color: #f1f1f1;
-            border: 1px solid #ddd;
-            padding: 15px;
-            overflow-x: auto;
+        @media (max-width: 768px) {
+            .frame-section {
+                margin-bottom: 0.5rem;
+            }
+            iframe {
+                height: 50vh !important;
+            }
+        }
+        /* PWA-like loading indicator */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body>
-    <h1>HTML Frame Types: A Comprehensive Guide</h1>
+<body class="bg-gradient-to-r from-blue-100 to-purple-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+            🌐 Frames: Web Design's Architectural Wonders
+        </h1>
 
-    <div class="frame-example">
-        <h2>1. Floating Frame (Inline Frame)</h2>
-        <p>An inline frame (iframe) allows you to embed another HTML document within the current HTML document.</p>
-        
-        <div class="code-example">
-            <pre><code>&lt;iframe src="https://example.com" 
-    width="500" 
-    height="300" 
-    frameborder="0"&gt;
-&lt;/iframe&gt;</code></pre>
-        </div>
-        
-        <p>Key Characteristics:</p>
-        <ul>
-            <li>Allows embedding external content</li>
-            <li>Can be positioned anywhere in the document</li>
-            <li>Supports attributes like width, height, and scrolling</li>
-        </ul>
+    <!-- Frames Sections with Collapsible Design -->
+    <div id="frames-container">
+        <section class="frame-section bg-white rounded-lg shadow-md p-4 md:p-6 mb-4">
+            <div class="frame-header flex justify-between items-center cursor-pointer" data-target="floating-frame">
+                <h2 class="text-xl md:text-2xl font-semibold text-blue-600">🌊 Floating Frame</h2>
+                <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+            <iframe src="floatingframe.html" class="mt-4 h-96 hidden" id="floating-frame"></iframe>
+        </section>
+
+        <section class="frame-section bg-white rounded-lg shadow-md p-4 md:p-6 mb-4">
+            <div class="frame-header flex justify-between items-center cursor-pointer" data-target="navigation-frame">
+                <h2 class="text-xl md:text-2xl font-semibold text-green-600">🧭 Navigation Frame</h2>
+                <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+            <iframe src="navigationframe.html" class="mt-4 h-96 hidden" id="navigation-frame"></iframe>
+        </section>
+
+        <section class="frame-section bg-white rounded-lg shadow-md p-4 md:p-6">
+            <div class="frame-header flex justify-between items-center cursor-pointer" data-target="mixed-frame">
+                <h2 class="text-xl md:text-2xl font-semibold text-purple-600">🔀 Mixed Frame</h2>
+                <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+            <iframe src="mixedframe.html" class="mt-4 h-96 hidden" id="mixed-frame"></iframe>
+        </section>
     </div>
 
-    <div class="frame-example">
-        <h2>2. Navigation Frame</h2>
-        <p>Navigation frames were traditionally used to create persistent navigation menus alongside changing content.</p>
-        
-        <div class="code-example">
-            <pre><code>&lt;frameset cols="200,*"&gt;
-    &lt;frame src="navigation.html" name="nav"&gt;
-    &lt;frame src="main-content.html" name="main"&gt;
-&lt;/frameset&gt;</code></pre>
-        </div>
-        
-        <p>Important Notes:</p>
-        <ul>
-            <li>Deprecated in HTML5</li>
-            <li>Modern websites use CSS for similar layouts</li>
-            <li>Replaced by more flexible CSS grid and flexbox techniques</li>
-        </ul>
-    </div>
+    <script>
+        // Remove loading overlay
+        window.addEventListener('load', () => {
+            document.getElementById('loading-overlay').style.display = 'none';
+        });
 
-    <div class="frame-example">
-        <h2>3. Mixed Frame (Combination Approach)</h2>
-        <p>A mixed frame approach combines different framing techniques using modern web technologies.</p>
-        
-        <div class="code-example">
-            <pre><code>&lt;div class="page-wrapper"&gt;
-    &lt;header&gt;Site Header&lt;/header&gt;
-    &lt;nav&gt;
-        &lt;iframe src="navigation-menu.html"&gt;&lt;/iframe&gt;
-    &lt;/nav&gt;
-    &lt;main&gt;
-        &lt;iframe src="main-content.html"&gt;&lt;/iframe&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;Site Footer&lt;/footer&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-        
-        <p>Modern Alternatives:</p>
-        <ul>
-            <li>Uses semantic HTML5 structure</li>
-            <li>Incorporates iframes for specific content embedding</li>
-            <li>Provides more flexible and responsive design</li>
-        </ul>
-    </div>
+        // Collapsible Frame Headers
+        document.querySelectorAll('.frame-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const targetFrameId = this.getAttribute('data-target');
+                const iframe = document.getElementById(targetFrameId);
+                const svg = this.querySelector('svg');
 
-    <div class="frame-example">
-        <h2>Frame Type Comparison</h2>
-        <table style="width:100%; border-collapse: collapse;">
-            <tr style="background-color: #f1f1f1;">
-                <th style="border: 1px solid #ddd; padding: 8px;">Frame Type</th>
-                <th style="border: 1px solid #ddd; padding: 8px;">Pros</th>
-                <th style="border: 1px solid #ddd; padding: 8px;">Cons</th>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;">Floating Frame (iframe)</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">Easy content embedding, flexible positioning</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">Potential security risks, performance overhead</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;">Navigation Frame</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">Consistent navigation, clear separation of content</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">Deprecated, poor mobile responsiveness</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;">Mixed Frame</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">Flexible, modern approach, semantic HTML</td>
-                <td style="border: 1px solid #ddd; padding: 8px;">Requires more complex CSS and JavaScript</td>
-            </tr>
-        </table>
-    </div>
+                // Toggle iframe visibility
+                iframe.classList.toggle('hidden');
+                
+                // Rotate SVG arrow
+                svg.classList.toggle('rotate-180');
+            });
+        });
+
+        // Lazy Loading and Performance Optimization
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (!iframe.src) {
+                        iframe.src = iframe.getAttribute('data-src');
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('iframe').forEach(iframe => {
+            observer.observe(iframe);
+        });
+    </script>
 </body>
 </html>

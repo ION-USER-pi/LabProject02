@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovative Web Design Showcase</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+        .floating-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform: perspective(1000px) rotateX(10deg);
+            transition: all 0.3s ease;
+        }
+        .floating-container:hover {
+            transform: perspective(1000px) rotateX(0deg) scale(1.02);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .content-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .floating-container {
+                padding: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.2rem;
+            }
+            .floating-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-container">
+        <h1>Web Design Innovations</h1>
+        <div class="content-grid">
+            <div class="content-card">
+                <h3>UX Design</h3>
+                <p>Crafting intuitive interfaces</p>
+            </div>
+            <div class="content-card">
+                <h3>Responsive</h3>
+                <p>Adaptive layouts</p>
+            </div>
+            <div class="content-card">
+                <h3>Performance</h3>
+                <p>Optimized experiences</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
