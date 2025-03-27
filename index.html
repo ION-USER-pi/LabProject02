@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>labproject02</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .frame-example {
+            background-color: white;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .code-example {
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 15px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Frame Types: A Comprehensive Guide</h1>
+
+    <div class="frame-example">
+        <h2>1. Floating Frame (Inline Frame)</h2>
+        <p>An inline frame (iframe) allows you to embed another HTML document within the current HTML document.</p>
+        
+        <div class="code-example">
+            <pre><code>&lt;iframe src="https://example.com" 
+    width="500" 
+    height="300" 
+    frameborder="0"&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+        
+        <p>Key Characteristics:</p>
+        <ul>
+            <li>Allows embedding external content</li>
+            <li>Can be positioned anywhere in the document</li>
+            <li>Supports attributes like width, height, and scrolling</li>
+        </ul>
+    </div>
+
+    <div class="frame-example">
+        <h2>2. Navigation Frame</h2>
+        <p>Navigation frames were traditionally used to create persistent navigation menus alongside changing content.</p>
+        
+        <div class="code-example">
+            <pre><code>&lt;frameset cols="200,*"&gt;
+    &lt;frame src="navigation.html" name="nav"&gt;
+    &lt;frame src="main-content.html" name="main"&gt;
+&lt;/frameset&gt;</code></pre>
+        </div>
+        
+        <p>Important Notes:</p>
+        <ul>
+            <li>Deprecated in HTML5</li>
+            <li>Modern websites use CSS for similar layouts</li>
+            <li>Replaced by more flexible CSS grid and flexbox techniques</li>
+        </ul>
+    </div>
+
+    <div class="frame-example">
+        <h2>3. Mixed Frame (Combination Approach)</h2>
+        <p>A mixed frame approach combines different framing techniques using modern web technologies.</p>
+        
+        <div class="code-example">
+            <pre><code>&lt;div class="page-wrapper"&gt;
+    &lt;header&gt;Site Header&lt;/header&gt;
+    &lt;nav&gt;
+        &lt;iframe src="navigation-menu.html"&gt;&lt;/iframe&gt;
+    &lt;/nav&gt;
+    &lt;main&gt;
+        &lt;iframe src="main-content.html"&gt;&lt;/iframe&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;Site Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        
+        <p>Modern Alternatives:</p>
+        <ul>
+            <li>Uses semantic HTML5 structure</li>
+            <li>Incorporates iframes for specific content embedding</li>
+            <li>Provides more flexible and responsive design</li>
+        </ul>
+    </div>
+
+    <div class="frame-example">
+        <h2>Frame Type Comparison</h2>
+        <table style="width:100%; border-collapse: collapse;">
+            <tr style="background-color: #f1f1f1;">
+                <th style="border: 1px solid #ddd; padding: 8px;">Frame Type</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Pros</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Cons</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Floating Frame (iframe)</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Easy content embedding, flexible positioning</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Potential security risks, performance overhead</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Navigation Frame</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Consistent navigation, clear separation of content</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Deprecated, poor mobile responsiveness</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Mixed Frame</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Flexible, modern approach, semantic HTML</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">Requires more complex CSS and JavaScript</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
